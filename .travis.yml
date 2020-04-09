@@ -1,0 +1,2 @@
+language: csharp
+solution: VS2017_Project/AutoMouseMover.sln

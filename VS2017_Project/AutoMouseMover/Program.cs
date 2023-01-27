@@ -35,7 +35,18 @@ namespace AutoMouseMover
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AutoMouseMoverForm());
+
+            try
+            {
+                // ensure we capture any issue occurring instead of silently failing.
+                Application.Run(new AutoMouseMoverForm());
+            }
+            catch (Exception e)
+            {
+                // display the details to the user
+                var text = $"There was an error that caused the application to crash.\n\n{e}";
+                MessageBox.Show(text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

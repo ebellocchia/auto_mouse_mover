@@ -21,6 +21,7 @@
  */
 
 using AutoMouseMover.WinHelper;
+using System.Windows.Forms;
 
 namespace AutoMouseMover.Logic
 {

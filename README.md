@@ -18,13 +18,13 @@ In order to move the mouse automatically while in background, the application di
 ## Building
 
 Just open the Visual Studio solution and build the project in Debug or Release.\
-The output folder is *VS2017_Project\AutoMouseMover\bin*.
+The output folder is _\AutoMouseMover\bin_.
 
 ## Usage
 
-For a basic usage, just open the application and click the *Start* button leaving the default settings.\
-If you want (but it's not necessary, I only added it for completeness), you can select the time period in seconds and the number of pixels to move the cursor. In addition to this, you can choose if minimizing the application to tray bar (suggested) and if showing the tray bar icon. In case the tray bar icon is not shown, the only way to close the application after started is using the *Task Manager*.\
-When minimized to the tray bar, you can open the application again by double-clicking the icon. You can also close it directly by right-clicking the icon and select *Close*.\
+For a basic usage, just open the application and click the _Start_ button leaving the default settings.\
+If you want (but it's not necessary, I only added it for completeness), you can select the time period in seconds and the number of pixels to move the cursor. In addition to this, you can choose if minimizing the application to tray bar (suggested) and if showing the tray bar icon. In case the tray bar icon is not shown, the only way to close the application after started is using the _Task Manager_.\
+When minimized to the tray bar, you can open the application again by double-clicking the icon. You can also close it directly by right-clicking the icon and select _Close_.\
 If you don't want to see the cursor moving by itself, just choose a small amount of moving pixels. The default value of 5 pixels should be enough (unless you stare at the cursor), at least on modern high-resolution screens.\
 All the settings are saved when the application is closed and loaded when started, so you don't have to set them every time.
 

@@ -18,7 +18,7 @@ In order to move the mouse automatically while in background, the application di
 ## Building
 
 Just open the Visual Studio solution and build the project in Debug or Release.\
-The output folder is *VS2017_Project\AutoMouseMover\bin*.
+The output folder is *\AutoMouseMover\bin*.
 
 ## Usage
 

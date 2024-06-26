@@ -21,6 +21,7 @@
  */
 
 using System;
+using System.Runtime.Versioning;
 using System.Windows.Forms;
 
 namespace AutoMouseMover
@@ -31,6 +32,7 @@ namespace AutoMouseMover
         // Main entry point for the application
         //
         [STAThread]
+        [SupportedOSPlatform("windows")]
         static void Main()
         {
             Application.EnableVisualStyles();

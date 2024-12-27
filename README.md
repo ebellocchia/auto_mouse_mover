@@ -1,4 +1,4 @@
-# Automatic mouse mover application
+# Automatic Mouse Mover
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/ebellocchia/auto_mouse_mover/master/LICENSE)
 

@@ -92,7 +92,7 @@ namespace AutoMouseMover.Logic
         {
             // Get current position
             var curr_pos = CursorHelper.GetCurrentPosition();
-            
+
             // Move cursor only if position is not changed, in order to not disturb if the user is working
             if (curr_pos == mLastCursorPos)
             {
@@ -118,19 +118,23 @@ namespace AutoMouseMover.Logic
         // Move cursor
         private void MoveCursor(int cDeltaPixel)
         {
-            // Scan through the available screens
             var position = CursorHelper.GetCurrentPosition();
             var x_delta = cDeltaPixel;
             var y_delta = cDeltaPixel;
             var new_x = position.X + x_delta;
             var new_y = position.Y + y_delta;
 
+            // Scan through the available screens
+            bool screen_found = false;
             foreach (var screen in Screen.AllScreens)
             {
                 // Check if this is this the screen the cursor is on
                 var bounds = screen.Bounds;
-                if (position.X >= bounds.X && position.X <= (bounds.X + bounds.Width))
+                if ((position.X >= bounds.X) && (position.X <= (bounds.X + bounds.Width)) &&
+                    (position.Y >= bounds.Y) && (position.Y <= (bounds.Y + bounds.Height)))
                 {
+                    screen_found = true;
+
                     // Invert delta if it will put the cursor out of screen
                     if (new_x < bounds.X || new_x > bounds.Right)
                     {
@@ -146,7 +150,15 @@ namespace AutoMouseMover.Logic
                 }
             }
 
-            CursorHelper.SetPositionRelative(x_delta, y_delta);
+            // Reset position if the cursor screen was not found (very unlikely)
+            if (!screen_found)
+            {
+                CursorHelper.ResetPosition();
+            }
+            else
+            {
+                CursorHelper.SetPositionRelative(x_delta, y_delta);
+            }
         }
 
         // Update moving direction

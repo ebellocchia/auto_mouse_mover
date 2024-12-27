@@ -30,6 +30,16 @@ namespace AutoMouseMover.WinHelper
     static class CursorHelper
     {
         //
+        // Constants
+        //
+        #region Constants
+
+        // Absolute coordinates are normalized between 0 and 65536
+        private const int ABS_COORDINATES_NORM = 65536;
+
+        #endregion
+
+        //
         // Static methods
         //
         #region Static methods
@@ -48,15 +58,31 @@ namespace AutoMouseMover.WinHelper
             }
         }
 
+        // Reset cursor position by placing it at center of the screen
+        public static bool ResetPosition()
+        {
+            // Create INPUT structure
+            var input = new SendInputWrapper.Input();
+            // Fill it
+            input.mType = SendInputWrapper.eInputTypes.INPUT_MOUSE;
+            input.mData.mMi.mMouseData = 0;
+            input.mData.mMi.mTime = 0;
+            input.mData.mMi.mX = ABS_COORDINATES_NORM / 2;
+            input.mData.mMi.mY = ABS_COORDINATES_NORM / 2;
+            input.mData.mMi.mFlags = SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_ABSOLUTE | SendInputWrapper.eMouseEventFlags.MOUSEEVENTF_MOVE;
+            // Send input
+            return SendInputWrapper.SendInput(input);
+        }
+
         // Set cursor position absolute
         public static bool SetPositionAbsolute(CursorPosition cPos)
         {
             // Get resolution
             var res_info = DesktopHelper.GetResolution();
 
-            // Absolute coordinates are from 0 to 65536
-            int real_x = (cPos.X * 65536) / res_info.Width;
-            int real_y = (cPos.Y * 65536) / res_info.Height;
+            // Normalize absolute coordinates
+            int real_x = (cPos.X * ABS_COORDINATES_NORM) / res_info.Width;
+            int real_y = (cPos.Y * ABS_COORDINATES_NORM) / res_info.Height;
 
             // Create INPUT structure
             var input = new SendInputWrapper.Input();

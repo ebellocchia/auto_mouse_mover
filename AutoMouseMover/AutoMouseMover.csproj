@@ -24,7 +24,7 @@
   <PropertyGroup>
     <ApplicationIcon>app_icon.ico</ApplicationIcon>
     <Title>AutoMouseMover</Title>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Authors>Emanuele Bellocchia</Authors>
     <Product>Automatic Mouse Mover</Product>
     <Description>Simple automatic mouse mover application</Description>

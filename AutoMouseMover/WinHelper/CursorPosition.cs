@@ -119,6 +119,21 @@ namespace AutoMouseMover.WinHelper
             return !(cPos1 == cPos2);
         }
 
+        // Equals comparison
+        public override bool Equals(object cObj)
+        {
+            if (ReferenceEquals(null, cObj)) return false;
+            if (ReferenceEquals(this, cObj)) return true;
+            if (cObj.GetType() != this.GetType()) return false;
+            return Equals((CursorPosition)cObj);
+        }
+
+        // Get hash code
+        public override int GetHashCode()
+        {
+            return this.mX.GetHashCode() + this.mY.GetHashCode();
+        }
+
         #endregion
 
         //

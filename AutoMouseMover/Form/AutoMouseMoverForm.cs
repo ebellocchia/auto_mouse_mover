@@ -237,7 +237,7 @@ namespace AutoMouseMover
         }
 
         // Set status
-        private void SetStatus(string cText)
+        private void SetStatus(string? cText)
         {
             StatusTextLabel.Text = cText;
         }

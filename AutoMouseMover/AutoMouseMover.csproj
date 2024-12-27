@@ -23,6 +23,17 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>app_icon.ico</ApplicationIcon>
+    <Title>AutoMouseMover</Title>
+    <Version>1.0.0</Version>
+    <Authors>Emanuele Bellocchia</Authors>
+    <Company>Emanuele Bellocchia</Company>
+    <Product>Automatic Mouse Mover</Product>
+    <Description>Simple automatic mouse mover application</Description>
+    <Copyright>Copyright © Emanuele Bellocchia 2020</Copyright>
+    <PackageProjectUrl>https://github.com/ebellocchia/auto_mouse_mover</PackageProjectUrl>
+    <PackageIcon></PackageIcon>
+    <RepositoryUrl>https://github.com/ebellocchia/auto_mouse_mover</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app_icon.ico" />
@@ -44,6 +55,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />

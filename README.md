@@ -19,7 +19,7 @@ The app supports multi-language via localization (a different form is created fo
 ## Building
 
 Just open the Visual Studio solution and build the project in Debug or Release.\
-The output folder is *\AutoMouseMover\bin*.
+The output folder is *AutoMouseMover\bin*.
 
 ## Usage
 

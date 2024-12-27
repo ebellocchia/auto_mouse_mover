@@ -267,6 +267,8 @@ namespace AutoMouseMover
 
             bool minimize_to_tray = MinimizeToTrayBarBox.Checked;
             bool show_tray_icon = ShowTrayBarIconBox.Checked;
+            decimal moving_period = MovingPeriodBox.Value;
+            decimal moving_pixel = MovingPixelBox.Value;
 
             this.Controls.Clear();
             InitializeComponent();
@@ -274,6 +276,8 @@ namespace AutoMouseMover
 
             MinimizeToTrayBarBox.Checked = minimize_to_tray;
             ShowTrayBarIconBox.Checked = show_tray_icon;
+            MovingPeriodBox.Value = moving_period;
+            MovingPixelBox.Value = moving_pixel;
         }
 
         // Initialize resource

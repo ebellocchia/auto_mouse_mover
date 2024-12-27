@@ -265,13 +265,13 @@
     <value>5, 0, 5, 0</value>
   </data>
   <data name="MovingTimeSecondLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 25</value>
+    <value>77, 25</value>
   </data>
   <data name="MovingTimeSecondLabel.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="MovingTimeSecondLabel.Text" xml:space="preserve">
-    <value>second(s)</value>
+    <value>seconds</value>
   </data>
   <data name="&gt;&gt;MovingTimeSecondLabel.Name" xml:space="preserve">
     <value>MovingTimeSecondLabel</value>

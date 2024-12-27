@@ -143,13 +143,13 @@
     <value>436, 73</value>
   </data>
   <data name="MovingTimeSecondLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 25</value>
+    <value>73, 25</value>
   </data>
   <data name="MovingTimeSecondLabel.Text" xml:space="preserve">
-    <value>secondo/i</value>
+    <value>secondi</value>
   </data>
   <data name="StatusStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>547, 32</value>
+    <value>536, 32</value>
   </data>
   <data name="StatusLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 25</value>
@@ -159,9 +159,6 @@
   </data>
   <data name="TrayBarIcon.BalloonTipText" xml:space="preserve">
     <value>Automatic Mouse Mover è in esecuzione in background</value>
-  </data>
-  <data name="TrayBarIcon.BalloonTipTitle" xml:space="preserve">
-    <value>Automatic Mouse Mover</value>
   </data>
   <data name="TrayBarIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1905,7 +1902,7 @@
 </value>
   </data>
   <data name="StopButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 288</value>
+    <value>384, 288</value>
   </data>
   <data name="StopButton.Text" xml:space="preserve">
     <value>Ferma</value>
@@ -1917,13 +1914,13 @@
     <value>Minimizza nella tray bar all'avvio</value>
   </data>
   <data name="ShowTrayBarIconBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 29</value>
+    <value>275, 29</value>
   </data>
   <data name="ShowTrayBarIconBox.Text" xml:space="preserve">
-    <value>Visualizza l'icona della tray bar</value>
+    <value>Visualizza l'icona nella tray bar</value>
   </data>
   <data name="MenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>547, 35</value>
+    <value>536, 35</value>
   </data>
   <data name="StripMenuLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 29</value>
@@ -1944,7 +1941,7 @@
     <value>Italiano</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>547, 398</value>
+    <value>536, 398</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

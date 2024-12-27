@@ -265,9 +265,15 @@ namespace AutoMouseMover
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(cCulture);
 
+            bool minimize_to_tray = MinimizeToTrayBarBox.Checked;
+            bool show_tray_icon = ShowTrayBarIconBox.Checked;
+
             this.Controls.Clear();
             InitializeComponent();
             InitializeResource();
+
+            MinimizeToTrayBarBox.Checked = minimize_to_tray;
+            ShowTrayBarIconBox.Checked = show_tray_icon;
 
             SetStatus(mResourceMng.GetString("Idle"));
         }

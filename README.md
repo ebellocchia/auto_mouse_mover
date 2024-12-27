@@ -1,6 +1,5 @@
 # Automatic mouse mover application
 
-[![Build Status](https://travis-ci.com/ebellocchia/auto_mouse_mover.svg?branch=master)](https://travis-ci.com/ebellocchia/auto_mouse_mover)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/ebellocchia/auto_mouse_mover/master/LICENSE)
 
 ## Introduction

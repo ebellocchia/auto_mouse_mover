@@ -157,6 +157,12 @@
   <data name="StatusLabel.Text" xml:space="preserve">
     <value>Stato:</value>
   </data>
+  <data name="StatusTextLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 25</value>
+  </data>
+  <data name="StatusTextLabel.Text" xml:space="preserve">
+    <value>pronto</value>
+  </data>
   <data name="TrayBarIcon.BalloonTipText" xml:space="preserve">
     <value>Automatic Mouse Mover è in esecuzione in background</value>
   </data>

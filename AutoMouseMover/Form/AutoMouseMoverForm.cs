@@ -274,8 +274,6 @@ namespace AutoMouseMover
 
             MinimizeToTrayBarBox.Checked = minimize_to_tray;
             ShowTrayBarIconBox.Checked = show_tray_icon;
-
-            SetStatus(mResourceMng.GetString("Idle"));
         }
 
         // Initialize resource

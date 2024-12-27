@@ -99,21 +99,21 @@
             // 
             // StatusStrip
             // 
+            resources.ApplyResources(StatusStrip, "StatusStrip");
             StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StatusLabel, StatusTextLabel });
-            resources.ApplyResources(StatusStrip, "StatusStrip");
             StatusStrip.Name = "StatusStrip";
             StatusStrip.SizingGrip = false;
             // 
             // StatusLabel
             // 
-            StatusLabel.Name = "StatusLabel";
             resources.ApplyResources(StatusLabel, "StatusLabel");
+            StatusLabel.Name = "StatusLabel";
             // 
             // StatusTextLabel
             // 
-            StatusTextLabel.Name = "StatusTextLabel";
             resources.ApplyResources(StatusTextLabel, "StatusTextLabel");
+            StatusTextLabel.Name = "StatusTextLabel";
             // 
             // CursorTimer
             // 
@@ -128,21 +128,21 @@
             // 
             // TrayBarContextMenu
             // 
+            resources.ApplyResources(TrayBarContextMenu, "TrayBarContextMenu");
             TrayBarContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             TrayBarContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { TrayBarMenuOpen, TrayBarMenuClose });
             TrayBarContextMenu.Name = "TrayBarContextMenu";
-            resources.ApplyResources(TrayBarContextMenu, "TrayBarContextMenu");
             // 
             // TrayBarMenuOpen
             // 
-            TrayBarMenuOpen.Name = "TrayBarMenuOpen";
             resources.ApplyResources(TrayBarMenuOpen, "TrayBarMenuOpen");
+            TrayBarMenuOpen.Name = "TrayBarMenuOpen";
             TrayBarMenuOpen.Click += TrayBarMenuOpen_Click;
             // 
             // TrayBarMenuClose
             // 
-            TrayBarMenuClose.Name = "TrayBarMenuClose";
             resources.ApplyResources(TrayBarMenuClose, "TrayBarMenuClose");
+            TrayBarMenuClose.Name = "TrayBarMenuClose";
             TrayBarMenuClose.Click += TrayBarMenuClose_Click;
             // 
             // StopButton
@@ -171,34 +171,34 @@
             // 
             // MenuStrip
             // 
+            resources.ApplyResources(MenuStrip, "MenuStrip");
             MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StripMenuLanguage, StripMenuAbout });
-            resources.ApplyResources(MenuStrip, "MenuStrip");
             MenuStrip.Name = "MenuStrip";
             MenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // StripMenuLanguage
             // 
+            resources.ApplyResources(StripMenuLanguage, "StripMenuLanguage");
             StripMenuLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { StripMenuEnglish, StripMenuItalian });
             StripMenuLanguage.Name = "StripMenuLanguage";
-            resources.ApplyResources(StripMenuLanguage, "StripMenuLanguage");
             // 
             // StripMenuEnglish
             // 
-            StripMenuEnglish.Name = "StripMenuEnglish";
             resources.ApplyResources(StripMenuEnglish, "StripMenuEnglish");
+            StripMenuEnglish.Name = "StripMenuEnglish";
             StripMenuEnglish.Click += StripMenuEnglish_Click;
             // 
             // StripMenuItalian
             // 
-            StripMenuItalian.Name = "StripMenuItalian";
             resources.ApplyResources(StripMenuItalian, "StripMenuItalian");
+            StripMenuItalian.Name = "StripMenuItalian";
             StripMenuItalian.Click += StripMenuItalian_Click;
             // 
             // StripMenuAbout
             // 
-            StripMenuAbout.Name = "StripMenuAbout";
             resources.ApplyResources(StripMenuAbout, "StripMenuAbout");
+            StripMenuAbout.Name = "StripMenuAbout";
             StripMenuAbout.Click += StripMenuAbout_Click;
             // 
             // AutoMouseMoverForm

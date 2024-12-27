@@ -131,7 +131,7 @@ namespace AutoMouseMover.Logic
                 var bounds = screen.Bounds;
                 if (position.X >= bounds.X && position.X <= (bounds.X + bounds.Width))
                 {
-                    // Check if the delta will put the cursor out of screen
+                    // Invert delta if it will put the cursor out of screen
                     if (new_x < bounds.X || new_x > bounds.Right)
                     {
                         x_delta = -x_delta;

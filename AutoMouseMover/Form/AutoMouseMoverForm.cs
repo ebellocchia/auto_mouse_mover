@@ -86,7 +86,7 @@ namespace AutoMouseMover
         private void StartButton_Click(object sender, EventArgs e)
         {
             // Disable GUI on start
-            DisableGuiOnStart();
+            SetGuiEnabled(false);
             // Set status
             SetStatus(mResourceMng.GetString("Running"));
             // Minimize to tray bar if requested
@@ -106,7 +106,7 @@ namespace AutoMouseMover
         private void StopButton_Click(object sender, EventArgs e)
         {
             SetStatus(mResourceMng.GetString("Idle"));
-            EnableGuiOnStop();
+            SetGuiEnabled(true);
             CursorTimer.Stop();
         }
 
@@ -223,28 +223,17 @@ namespace AutoMouseMover
             mSettings.Save();
         }
 
-        // Disable GUI on start
-        private void DisableGuiOnStart()
+        // Enable/Disable GUI
+        private void SetGuiEnabled(bool cEnabled)
         {
-            StripMenuLanguage.Enabled = false;
-            MovingPeriodBox.Enabled = false;
-            MovingPixelBox.Enabled = false;
-            MinimizeToTrayBarBox.Enabled = false;
-            ShowTrayBarIconBox.Enabled = false;
-            StartButton.Enabled = false;
-            StopButton.Enabled = true;
-        }
-
-        // Enable GUI on stop
-        private void EnableGuiOnStop()
-        {
-            StripMenuLanguage.Enabled = true;
-            MovingPeriodBox.Enabled = true;
-            MovingPixelBox.Enabled = true;
-            MinimizeToTrayBarBox.Enabled = true;
-            ShowTrayBarIconBox.Enabled = true;
-            StartButton.Enabled = true;
-            StopButton.Enabled = false;
+            StripMenuAbout.Enabled = cEnabled;
+            StripMenuLanguage.Enabled = cEnabled;
+            MovingPeriodBox.Enabled = cEnabled;
+            MovingPixelBox.Enabled = cEnabled;
+            MinimizeToTrayBarBox.Enabled = cEnabled;
+            ShowTrayBarIconBox.Enabled = cEnabled;
+            StartButton.Enabled = cEnabled;
+            StopButton.Enabled = !cEnabled;
         }
 
         // Set status

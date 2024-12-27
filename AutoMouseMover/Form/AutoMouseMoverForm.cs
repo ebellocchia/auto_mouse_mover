@@ -38,11 +38,11 @@ namespace AutoMouseMover
         #region Constants
 
         // Idle status string
-        private const string STATUS_IDLE_STR    = "idle";
+        private const string STATUS_IDLE_STR = "idle";
         // Running status string
         private const string STATUS_RUNNING_STR = "running";
         // Balloon tip timeout
-        private const int  BALLOON_TIP_TIMEOUT  = 500;
+        private const int  BALLOON_TIP_TIMEOUT = 500;
 
         #endregion
 
@@ -88,13 +88,14 @@ namespace AutoMouseMover
         {
             // Disable GUI on start
             DisableGuiOnStart();
+            // Set status
+            SetStatus(STATUS_RUNNING_STR);
             // Minimize to tray bar if requested
             if (MinimizeToTrayBarBox.Checked)
             {
                 MinimizeWindowToTrayBar();
             }
-            // Set status
-            SetStatus(STATUS_RUNNING_STR);
+
             // Initialize auto mouse mover class
             mAutoMouseMover.Initialize((int) MovingPixelBox.Value);
             // Set timer interval and start it
@@ -236,7 +237,7 @@ namespace AutoMouseMover
         // Set status
         private void SetStatus(string cText)
         {
-            StatusLabel.Text = String.Format(StatusLabel.Text, cText);
+            StatusTextLabel.Text = cText;
         }
 
         // Minimize window to tray bar

@@ -28,269 +28,247 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoMouseMoverForm));
-            this.StartButton = new System.Windows.Forms.Button();
-            this.MovingTimeLabel = new System.Windows.Forms.Label();
-            this.MovingPixelLabel = new System.Windows.Forms.Label();
-            this.MovingPixelBox = new System.Windows.Forms.NumericUpDown();
-            this.MovingPeriodBox = new System.Windows.Forms.NumericUpDown();
-            this.MovingTimeSecondLabel = new System.Windows.Forms.Label();
-            this.StatusStrip = new System.Windows.Forms.StatusStrip();
-            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.CursorTimer = new System.Windows.Forms.Timer(this.components);
-            this.TrayBarIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.TrayBarContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.TrayBarMenuOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.TrayBarMenuClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.StopButton = new System.Windows.Forms.Button();
-            this.MinimizeToTrayBarBox = new System.Windows.Forms.CheckBox();
-            this.ShowTrayBarIconBox = new System.Windows.Forms.CheckBox();
-            this.MenuStrip = new System.Windows.Forms.MenuStrip();
-            this.StripMenuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.MovingPixelBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MovingPeriodBox)).BeginInit();
-            this.StatusStrip.SuspendLayout();
-            this.TrayBarContextMenu.SuspendLayout();
-            this.MenuStrip.SuspendLayout();
-            this.SuspendLayout();
+            StartButton = new System.Windows.Forms.Button();
+            MovingTimeLabel = new System.Windows.Forms.Label();
+            MovingPixelLabel = new System.Windows.Forms.Label();
+            MovingPixelBox = new System.Windows.Forms.NumericUpDown();
+            MovingPeriodBox = new System.Windows.Forms.NumericUpDown();
+            MovingTimeSecondLabel = new System.Windows.Forms.Label();
+            StatusStrip = new System.Windows.Forms.StatusStrip();
+            StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            CursorTimer = new System.Windows.Forms.Timer(components);
+            TrayBarIcon = new System.Windows.Forms.NotifyIcon(components);
+            TrayBarContextMenu = new System.Windows.Forms.ContextMenuStrip(components);
+            TrayBarMenuOpen = new System.Windows.Forms.ToolStripMenuItem();
+            TrayBarMenuClose = new System.Windows.Forms.ToolStripMenuItem();
+            StopButton = new System.Windows.Forms.Button();
+            MinimizeToTrayBarBox = new System.Windows.Forms.CheckBox();
+            ShowTrayBarIconBox = new System.Windows.Forms.CheckBox();
+            MenuStrip = new System.Windows.Forms.MenuStrip();
+            StripMenuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            StatusTextLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            ((System.ComponentModel.ISupportInitialize)MovingPixelBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)MovingPeriodBox).BeginInit();
+            StatusStrip.SuspendLayout();
+            TrayBarContextMenu.SuspendLayout();
+            MenuStrip.SuspendLayout();
+            SuspendLayout();
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(19, 184);
-            this.StartButton.Margin = new System.Windows.Forms.Padding(4);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(100, 28);
-            this.StartButton.TabIndex = 0;
-            this.StartButton.Text = "Start";
-            this.StartButton.UseVisualStyleBackColor = true;
-            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            StartButton.Location = new System.Drawing.Point(24, 288);
+            StartButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            StartButton.Name = "StartButton";
+            StartButton.Size = new System.Drawing.Size(125, 44);
+            StartButton.TabIndex = 0;
+            StartButton.Text = "Start";
+            StartButton.UseVisualStyleBackColor = true;
+            StartButton.Click += StartButton_Click;
             // 
             // MovingTimeLabel
             // 
-            this.MovingTimeLabel.AutoSize = true;
-            this.MovingTimeLabel.Location = new System.Drawing.Point(16, 47);
-            this.MovingTimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.MovingTimeLabel.Name = "MovingTimeLabel";
-            this.MovingTimeLabel.Size = new System.Drawing.Size(166, 17);
-            this.MovingTimeLabel.TabIndex = 3;
-            this.MovingTimeLabel.Text = "Move when PC is idle for:";
+            MovingTimeLabel.AutoSize = true;
+            MovingTimeLabel.Location = new System.Drawing.Point(20, 73);
+            MovingTimeLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            MovingTimeLabel.Name = "MovingTimeLabel";
+            MovingTimeLabel.Size = new System.Drawing.Size(212, 25);
+            MovingTimeLabel.TabIndex = 3;
+            MovingTimeLabel.Text = "Move when PC is idle for:";
             // 
             // MovingPixelLabel
             // 
-            this.MovingPixelLabel.AutoSize = true;
-            this.MovingPixelLabel.Location = new System.Drawing.Point(16, 79);
-            this.MovingPixelLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.MovingPixelLabel.Name = "MovingPixelLabel";
-            this.MovingPixelLabel.Size = new System.Drawing.Size(210, 17);
-            this.MovingPixelLabel.TabIndex = 4;
-            this.MovingPixelLabel.Text = "Number of pixel to move mouse:";
+            MovingPixelLabel.AutoSize = true;
+            MovingPixelLabel.Location = new System.Drawing.Point(20, 123);
+            MovingPixelLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            MovingPixelLabel.Name = "MovingPixelLabel";
+            MovingPixelLabel.Size = new System.Drawing.Size(275, 25);
+            MovingPixelLabel.TabIndex = 4;
+            MovingPixelLabel.Text = "Number of pixel to move mouse:";
             // 
             // MovingPixelBox
             // 
-            this.MovingPixelBox.Location = new System.Drawing.Point(235, 76);
-            this.MovingPixelBox.Margin = new System.Windows.Forms.Padding(4);
-            this.MovingPixelBox.Maximum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            0});
-            this.MovingPixelBox.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.MovingPixelBox.Name = "MovingPixelBox";
-            this.MovingPixelBox.Size = new System.Drawing.Size(67, 22);
-            this.MovingPixelBox.TabIndex = 5;
-            this.MovingPixelBox.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
+            MovingPixelBox.Location = new System.Drawing.Point(294, 119);
+            MovingPixelBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            MovingPixelBox.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
+            MovingPixelBox.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            MovingPixelBox.Name = "MovingPixelBox";
+            MovingPixelBox.Size = new System.Drawing.Size(84, 31);
+            MovingPixelBox.TabIndex = 5;
+            MovingPixelBox.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // MovingPeriodBox
             // 
-            this.MovingPeriodBox.Location = new System.Drawing.Point(235, 44);
-            this.MovingPeriodBox.Margin = new System.Windows.Forms.Padding(4);
-            this.MovingPeriodBox.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.MovingPeriodBox.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.MovingPeriodBox.Name = "MovingPeriodBox";
-            this.MovingPeriodBox.Size = new System.Drawing.Size(67, 22);
-            this.MovingPeriodBox.TabIndex = 6;
-            this.MovingPeriodBox.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
+            MovingPeriodBox.Location = new System.Drawing.Point(294, 69);
+            MovingPeriodBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            MovingPeriodBox.Maximum = new decimal(new int[] { 30, 0, 0, 0 });
+            MovingPeriodBox.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
+            MovingPeriodBox.Name = "MovingPeriodBox";
+            MovingPeriodBox.Size = new System.Drawing.Size(84, 31);
+            MovingPeriodBox.TabIndex = 6;
+            MovingPeriodBox.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // MovingTimeSecondLabel
             // 
-            this.MovingTimeSecondLabel.AutoSize = true;
-            this.MovingTimeSecondLabel.Location = new System.Drawing.Point(309, 47);
-            this.MovingTimeSecondLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.MovingTimeSecondLabel.Name = "MovingTimeSecondLabel";
-            this.MovingTimeSecondLabel.Size = new System.Drawing.Size(71, 17);
-            this.MovingTimeSecondLabel.TabIndex = 7;
-            this.MovingTimeSecondLabel.Text = "second(s)";
+            MovingTimeSecondLabel.AutoSize = true;
+            MovingTimeSecondLabel.Location = new System.Drawing.Point(386, 73);
+            MovingTimeSecondLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            MovingTimeSecondLabel.Name = "MovingTimeSecondLabel";
+            MovingTimeSecondLabel.Size = new System.Drawing.Size(87, 25);
+            MovingTimeSecondLabel.TabIndex = 7;
+            MovingTimeSecondLabel.Text = "second(s)";
             // 
             // StatusStrip
             // 
-            this.StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusLabel});
-            this.StatusStrip.Location = new System.Drawing.Point(0, 230);
-            this.StatusStrip.Name = "StatusStrip";
-            this.StatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.StatusStrip.Size = new System.Drawing.Size(393, 25);
-            this.StatusStrip.SizingGrip = false;
-            this.StatusStrip.TabIndex = 8;
+            StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StatusLabel, StatusTextLabel });
+            StatusStrip.Location = new System.Drawing.Point(0, 366);
+            StatusStrip.Name = "StatusStrip";
+            StatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 24, 0);
+            StatusStrip.Size = new System.Drawing.Size(491, 32);
+            StatusStrip.SizingGrip = false;
+            StatusStrip.TabIndex = 8;
             // 
             // StatusLabel
             // 
-            this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(74, 20);
-            this.StatusLabel.Text = "Status: {0}";
+            StatusLabel.Name = "StatusLabel";
+            StatusLabel.Size = new System.Drawing.Size(64, 25);
+            StatusLabel.Text = "Status:";
             // 
             // CursorTimer
             // 
-            this.CursorTimer.Tick += new System.EventHandler(this.CursorTimer_Tick);
+            CursorTimer.Tick += CursorTimer_Tick;
             // 
             // TrayBarIcon
             // 
-            this.TrayBarIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.TrayBarIcon.BalloonTipText = "Automatic mouse mover is running in background";
-            this.TrayBarIcon.BalloonTipTitle = "Automatic mouse mover";
-            this.TrayBarIcon.ContextMenuStrip = this.TrayBarContextMenu;
-            this.TrayBarIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayBarIcon.Icon")));
-            this.TrayBarIcon.Text = "Automatic mouse mover running";
-            this.TrayBarIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayBarIcon_MouseDoubleClick);
+            TrayBarIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            TrayBarIcon.BalloonTipText = "Automatic mouse mover is running in background";
+            TrayBarIcon.BalloonTipTitle = "Automatic mouse mover";
+            TrayBarIcon.ContextMenuStrip = TrayBarContextMenu;
+            TrayBarIcon.Icon = (System.Drawing.Icon)resources.GetObject("TrayBarIcon.Icon");
+            TrayBarIcon.Text = "Automatic mouse mover running";
+            TrayBarIcon.MouseDoubleClick += TrayBarIcon_MouseDoubleClick;
             // 
             // TrayBarContextMenu
             // 
-            this.TrayBarContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.TrayBarContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TrayBarMenuOpen,
-            this.TrayBarMenuClose});
-            this.TrayBarContextMenu.Name = "TrayBarContextMenu";
-            this.TrayBarContextMenu.Size = new System.Drawing.Size(115, 52);
+            TrayBarContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            TrayBarContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { TrayBarMenuOpen, TrayBarMenuClose });
+            TrayBarContextMenu.Name = "TrayBarContextMenu";
+            TrayBarContextMenu.Size = new System.Drawing.Size(129, 68);
             // 
             // TrayBarMenuOpen
             // 
-            this.TrayBarMenuOpen.Name = "TrayBarMenuOpen";
-            this.TrayBarMenuOpen.Size = new System.Drawing.Size(114, 24);
-            this.TrayBarMenuOpen.Text = "Open";
-            this.TrayBarMenuOpen.Click += new System.EventHandler(this.TrayBarMenuOpen_Click);
+            TrayBarMenuOpen.Name = "TrayBarMenuOpen";
+            TrayBarMenuOpen.Size = new System.Drawing.Size(128, 32);
+            TrayBarMenuOpen.Text = "Open";
+            TrayBarMenuOpen.Click += TrayBarMenuOpen_Click;
             // 
             // TrayBarMenuClose
             // 
-            this.TrayBarMenuClose.Name = "TrayBarMenuClose";
-            this.TrayBarMenuClose.Size = new System.Drawing.Size(114, 24);
-            this.TrayBarMenuClose.Text = "Close";
-            this.TrayBarMenuClose.Click += new System.EventHandler(this.TrayBarMenuClose_Click);
+            TrayBarMenuClose.Name = "TrayBarMenuClose";
+            TrayBarMenuClose.Size = new System.Drawing.Size(128, 32);
+            TrayBarMenuClose.Text = "Close";
+            TrayBarMenuClose.Click += TrayBarMenuClose_Click;
             // 
             // StopButton
             // 
-            this.StopButton.Enabled = false;
-            this.StopButton.Location = new System.Drawing.Point(274, 184);
-            this.StopButton.Margin = new System.Windows.Forms.Padding(4);
-            this.StopButton.Name = "StopButton";
-            this.StopButton.Size = new System.Drawing.Size(100, 28);
-            this.StopButton.TabIndex = 10;
-            this.StopButton.Text = "Stop";
-            this.StopButton.UseVisualStyleBackColor = true;
-            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+            StopButton.Enabled = false;
+            StopButton.Location = new System.Drawing.Point(342, 288);
+            StopButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            StopButton.Name = "StopButton";
+            StopButton.Size = new System.Drawing.Size(125, 44);
+            StopButton.TabIndex = 10;
+            StopButton.Text = "Stop";
+            StopButton.UseVisualStyleBackColor = true;
+            StopButton.Click += StopButton_Click;
             // 
             // MinimizeToTrayBarBox
             // 
-            this.MinimizeToTrayBarBox.AutoSize = true;
-            this.MinimizeToTrayBarBox.Checked = true;
-            this.MinimizeToTrayBarBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MinimizeToTrayBarBox.Location = new System.Drawing.Point(20, 114);
-            this.MinimizeToTrayBarBox.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimizeToTrayBarBox.Name = "MinimizeToTrayBarBox";
-            this.MinimizeToTrayBarBox.Size = new System.Drawing.Size(238, 21);
-            this.MinimizeToTrayBarBox.TabIndex = 11;
-            this.MinimizeToTrayBarBox.Text = "Minimize to tray bar when started";
-            this.MinimizeToTrayBarBox.UseVisualStyleBackColor = true;
-            this.MinimizeToTrayBarBox.CheckedChanged += new System.EventHandler(this.MinimizeToTrayBarBox_CheckedChanged);
+            MinimizeToTrayBarBox.AutoSize = true;
+            MinimizeToTrayBarBox.Checked = true;
+            MinimizeToTrayBarBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            MinimizeToTrayBarBox.Location = new System.Drawing.Point(25, 178);
+            MinimizeToTrayBarBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            MinimizeToTrayBarBox.Name = "MinimizeToTrayBarBox";
+            MinimizeToTrayBarBox.Size = new System.Drawing.Size(304, 29);
+            MinimizeToTrayBarBox.TabIndex = 11;
+            MinimizeToTrayBarBox.Text = "Minimize to tray bar when started";
+            MinimizeToTrayBarBox.UseVisualStyleBackColor = true;
+            MinimizeToTrayBarBox.CheckedChanged += MinimizeToTrayBarBox_CheckedChanged;
             // 
             // ShowTrayBarIconBox
             // 
-            this.ShowTrayBarIconBox.AutoSize = true;
-            this.ShowTrayBarIconBox.Checked = true;
-            this.ShowTrayBarIconBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ShowTrayBarIconBox.Location = new System.Drawing.Point(20, 143);
-            this.ShowTrayBarIconBox.Margin = new System.Windows.Forms.Padding(4);
-            this.ShowTrayBarIconBox.Name = "ShowTrayBarIconBox";
-            this.ShowTrayBarIconBox.Size = new System.Drawing.Size(250, 21);
-            this.ShowTrayBarIconBox.TabIndex = 12;
-            this.ShowTrayBarIconBox.Text = "Show tray bar icon when minimized";
-            this.ShowTrayBarIconBox.UseVisualStyleBackColor = true;
+            ShowTrayBarIconBox.AutoSize = true;
+            ShowTrayBarIconBox.Checked = true;
+            ShowTrayBarIconBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            ShowTrayBarIconBox.Location = new System.Drawing.Point(25, 223);
+            ShowTrayBarIconBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            ShowTrayBarIconBox.Name = "ShowTrayBarIconBox";
+            ShowTrayBarIconBox.Size = new System.Drawing.Size(320, 29);
+            ShowTrayBarIconBox.TabIndex = 12;
+            ShowTrayBarIconBox.Text = "Show tray bar icon when minimized";
+            ShowTrayBarIconBox.UseVisualStyleBackColor = true;
             // 
             // MenuStrip
             // 
-            this.MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StripMenuAbout});
-            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.MenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.MenuStrip.Size = new System.Drawing.Size(393, 28);
-            this.MenuStrip.TabIndex = 13;
+            MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StripMenuAbout });
+            MenuStrip.Location = new System.Drawing.Point(0, 0);
+            MenuStrip.Name = "MenuStrip";
+            MenuStrip.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
+            MenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            MenuStrip.Size = new System.Drawing.Size(491, 35);
+            MenuStrip.TabIndex = 13;
             // 
             // StripMenuAbout
             // 
-            this.StripMenuAbout.Name = "StripMenuAbout";
-            this.StripMenuAbout.Size = new System.Drawing.Size(62, 24);
-            this.StripMenuAbout.Text = "About";
-            this.StripMenuAbout.Click += new System.EventHandler(this.StripMenuAbout_Click);
+            StripMenuAbout.Name = "StripMenuAbout";
+            StripMenuAbout.Size = new System.Drawing.Size(78, 29);
+            StripMenuAbout.Text = "About";
+            StripMenuAbout.Click += StripMenuAbout_Click;
+            // 
+            // StatusTextLabel
+            // 
+            StatusTextLabel.Name = "StatusTextLabel";
+            StatusTextLabel.Size = new System.Drawing.Size(40, 25);
+            StatusTextLabel.Text = "idle";
             // 
             // AutoMouseMoverForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 255);
-            this.Controls.Add(this.ShowTrayBarIconBox);
-            this.Controls.Add(this.MinimizeToTrayBarBox);
-            this.Controls.Add(this.StopButton);
-            this.Controls.Add(this.StatusStrip);
-            this.Controls.Add(this.MenuStrip);
-            this.Controls.Add(this.MovingTimeSecondLabel);
-            this.Controls.Add(this.MovingPeriodBox);
-            this.Controls.Add(this.MovingPixelBox);
-            this.Controls.Add(this.MovingPixelLabel);
-            this.Controls.Add(this.MovingTimeLabel);
-            this.Controls.Add(this.StartButton);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.MenuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.Name = "AutoMouseMoverForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Automatic Mouse Mover";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AutoMouseMoverForm_FormClosing);
-            this.Resize += new System.EventHandler(this.AutoMouseMoverForm_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.MovingPixelBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MovingPeriodBox)).EndInit();
-            this.StatusStrip.ResumeLayout(false);
-            this.StatusStrip.PerformLayout();
-            this.TrayBarContextMenu.ResumeLayout(false);
-            this.MenuStrip.ResumeLayout(false);
-            this.MenuStrip.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(491, 398);
+            Controls.Add(ShowTrayBarIconBox);
+            Controls.Add(MinimizeToTrayBarBox);
+            Controls.Add(StopButton);
+            Controls.Add(StatusStrip);
+            Controls.Add(MenuStrip);
+            Controls.Add(MovingTimeSecondLabel);
+            Controls.Add(MovingPeriodBox);
+            Controls.Add(MovingPixelBox);
+            Controls.Add(MovingPixelLabel);
+            Controls.Add(MovingTimeLabel);
+            Controls.Add(StartButton);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = MenuStrip;
+            Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            MaximizeBox = false;
+            Name = "AutoMouseMoverForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Automatic Mouse Mover";
+            FormClosing += AutoMouseMoverForm_FormClosing;
+            Resize += AutoMouseMoverForm_Resize;
+            ((System.ComponentModel.ISupportInitialize)MovingPixelBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)MovingPeriodBox).EndInit();
+            StatusStrip.ResumeLayout(false);
+            StatusStrip.PerformLayout();
+            TrayBarContextMenu.ResumeLayout(false);
+            MenuStrip.ResumeLayout(false);
+            MenuStrip.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -313,6 +291,7 @@
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem StripMenuAbout;
+        private System.Windows.Forms.ToolStripStatusLabel StatusTextLabel;
     }
 }
 

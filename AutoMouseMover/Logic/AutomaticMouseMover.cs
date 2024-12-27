@@ -118,38 +118,35 @@ namespace AutoMouseMover.Logic
         // Move cursor
         private void MoveCursor(int cDeltaPixel)
         {
-            // adjust the deltas in the opposite direction if they are outside of bounds. This means we won't
-            // try to move the cursor outside the available display area.
-
-
-            // scan through the available screens
+            // Scan through the available screens
             var position = CursorHelper.GetCurrentPosition();
-            var xDelta = cDeltaPixel;
-            var yDelta = cDeltaPixel;
-            var newX = position.X + xDelta;
-            var newY = position.Y + yDelta;
+            var x_delta = cDeltaPixel;
+            var y_delta = cDeltaPixel;
+            var new_x = position.X + x_delta;
+            var new_y = position.Y + y_delta;
+
             foreach (var screen in Screen.AllScreens)
             {
-                // is this the screen the cursor is on
+                // Check if this is this the screen the cursor is on
                 var bounds = screen.Bounds;
                 if (position.X >= bounds.X && position.X <= (bounds.X + bounds.Width))
                 {
-                    // this is our screen check if the delta will put us out
-                    if (newX < bounds.X || newX > bounds.Right)
+                    // Check if the delta will put the cursor out of screen
+                    if (new_x < bounds.X || new_x > bounds.Right)
                     {
-                        xDelta = -xDelta;
+                        x_delta = -x_delta;
                     }
-                    if (newY < bounds.Y || newY > bounds.Bottom)
+                    if (new_y < bounds.Y || new_y > bounds.Bottom)
                     {
-                        yDelta = -yDelta;
+                        y_delta = -y_delta;
                     }
 
-                    // we don't need to scan through the rest
+                    // We don't need to scan through the rest
                     break;
                 }
             }
 
-            CursorHelper.SetPositionRelative(xDelta, yDelta);
+            CursorHelper.SetPositionRelative(x_delta, y_delta);
         }
 
         // Update moving direction

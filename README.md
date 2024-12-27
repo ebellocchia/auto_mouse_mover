@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This small GUI application simulates a periodical user input by automatically moving the mouse cursor. It's written in C# using Visual Studio 2017.\
+This small GUI application simulates a periodical user input by automatically moving the mouse cursor, written in C#.\
 It may seem useless at a first glance, but I use it quite often on company laptops where the power options are locked and cannot be modified. My typical use case is for running demos in fairs or in front of customers, when you cannot move the mouse and you don't want the laptop to automatically lock the screen. In this way, you don't have to remember to move the mouse every now and them and you can concentrate on the demo.
 
 ## How it works

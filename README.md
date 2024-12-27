@@ -11,10 +11,10 @@ It may seem useless at a first glance, but I use it quite often on company lapto
 
 Once started, the application is minimized to the tray bar and runs in background. The user can choose if showing the tray bar icon to make it completely invisible.\
 The application periodically checks the mouse position and simulates a mouse moving. In order to avoid disturbing the user if he's using the PC, the mouse is moved only if its position remained the same since the last time.\
-The cursor is moved back and forth, so it always remains in the same spot and does not go outside the screen. If the cursor is detected outside the main screen, it'll be reset at its center.\
+The cursor is moved back and forth, so it always remains in the same spot and does not go outside the screen.\
 In order to move the mouse automatically while in background, the application directly imports and calls the Windows APIs for sending input to the operating system and getting the cursor position, since there is no native function in C# for doing this (at least when I coded it).
 
-The app supports multi-language via localization (a different form is created for each language, which is automatically selected by Windows depending on the system language). The current supported languages are English and Italian, but it can be easily extended to other languages.
+The app supports multi-language via localization (a different form is created for each language, which is automatically selected by Windows depending on the system language). The current supported languages are English and Italian, but it can be easily extended to support other languages.
 
 ## Building
 

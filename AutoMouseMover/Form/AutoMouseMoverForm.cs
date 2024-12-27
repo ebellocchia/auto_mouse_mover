@@ -21,6 +21,8 @@
  */
 
 using System;
+using System.Reflection;
+using System.Resources;
 using System.Windows.Forms;
 using AutoMouseMover.Logic;
 using AutoMouseMover.Utils;
@@ -37,12 +39,8 @@ namespace AutoMouseMover
         //
         #region Constants
 
-        // Idle status string
-        private const string STATUS_IDLE_STR = "idle";
-        // Running status string
-        private const string STATUS_RUNNING_STR = "running";
         // Balloon tip timeout
-        private const int  BALLOON_TIP_TIMEOUT = 500;
+        private const int BALLOON_TIP_TIMEOUT = 500;
 
         #endregion
 
@@ -54,7 +52,9 @@ namespace AutoMouseMover
         // Automatic mouse mover
         private AutomaticMouseMover mAutoMouseMover;
         // Settings
-        private SettingsHelper      mSettings;
+        private SettingsHelper mSettings;
+        // Resource manager
+        private ResourceManager mResourceMng;
 
         #endregion
 
@@ -67,13 +67,12 @@ namespace AutoMouseMover
         public AutoMouseMoverForm()
         {
             InitializeComponent();
+            InitializeResource();
             // Create classes
             mAutoMouseMover = new AutomaticMouseMover();
             mSettings = new SettingsHelper();
             // Load settings
             LoadSettings();
-            // Set status
-            SetStatus(STATUS_IDLE_STR);
         }
 
         #endregion
@@ -89,7 +88,7 @@ namespace AutoMouseMover
             // Disable GUI on start
             DisableGuiOnStart();
             // Set status
-            SetStatus(STATUS_RUNNING_STR);
+            SetStatus(mResourceMng.GetString("Running"));
             // Minimize to tray bar if requested
             if (MinimizeToTrayBarBox.Checked)
             {
@@ -97,16 +96,16 @@ namespace AutoMouseMover
             }
 
             // Initialize auto mouse mover class
-            mAutoMouseMover.Initialize((int) MovingPixelBox.Value);
+            mAutoMouseMover.Initialize((int)MovingPixelBox.Value);
             // Set timer interval and start it
-            CursorTimer.Interval = ((int) MovingPeriodBox.Value) * 1000;
+            CursorTimer.Interval = ((int)MovingPeriodBox.Value) * 1000;
             CursorTimer.Start();
         }
 
         // Stop button
         private void StopButton_Click(object sender, EventArgs e)
         {
-            SetStatus(STATUS_IDLE_STR);
+            SetStatus(mResourceMng.GetString("Idle"));
             EnableGuiOnStop();
             CursorTimer.Stop();
         }
@@ -142,6 +141,18 @@ namespace AutoMouseMover
         {
             CursorTimer.Stop();
             Close();
+        }
+
+        // English button in menu strip
+        private void StripMenuEnglish_Click(object sender, EventArgs e)
+        {
+            SetLanguage("en");
+        }
+
+        // Italian button in menu strip
+        private void StripMenuItalian_Click(object sender, EventArgs e)
+        {
+            SetLanguage("it");
         }
 
         #endregion
@@ -185,53 +196,55 @@ namespace AutoMouseMover
         {
             try
             {
-                MovingPeriodBox.Value        = mSettings.MovingTime;
-                MovingPixelBox.Value         = mSettings.MovingPixel;
+                MovingPeriodBox.Value = mSettings.MovingTime;
+                MovingPixelBox.Value = mSettings.MovingPixel;
                 MinimizeToTrayBarBox.Checked = mSettings.MinimizeToTrayBar;
-                ShowTrayBarIconBox.Checked   = mSettings.ShowTrayBarIcon;
+                ShowTrayBarIconBox.Checked = mSettings.ShowTrayBarIcon;
             }
             catch
             {
                 // Default settings in case of errors
                 mSettings.LoadDefault();
                 // Set again
-                MovingPeriodBox.Value        = mSettings.MovingTime;
-                MovingPixelBox.Value         = mSettings.MovingPixel;
+                MovingPeriodBox.Value = mSettings.MovingTime;
+                MovingPixelBox.Value = mSettings.MovingPixel;
                 MinimizeToTrayBarBox.Checked = mSettings.MinimizeToTrayBar;
-                ShowTrayBarIconBox.Checked   = mSettings.ShowTrayBarIcon;
+                ShowTrayBarIconBox.Checked = mSettings.ShowTrayBarIcon;
             }
         }
 
         // Save settings
         private void SaveSettings()
         {
-            mSettings.MovingTime        = (int) MovingPeriodBox.Value;
-            mSettings.MovingPixel       = (int) MovingPixelBox.Value;
+            mSettings.MovingTime = (int)MovingPeriodBox.Value;
+            mSettings.MovingPixel = (int)MovingPixelBox.Value;
             mSettings.MinimizeToTrayBar = MinimizeToTrayBarBox.Checked;
-            mSettings.ShowTrayBarIcon   = ShowTrayBarIconBox.Checked;
+            mSettings.ShowTrayBarIcon = ShowTrayBarIconBox.Checked;
             mSettings.Save();
         }
 
         // Disable GUI on start
         private void DisableGuiOnStart()
         {
-            MovingPeriodBox.Enabled      = false;
-            MovingPixelBox.Enabled       = false;
+            StripMenuLanguage.Enabled = false;
+            MovingPeriodBox.Enabled = false;
+            MovingPixelBox.Enabled = false;
             MinimizeToTrayBarBox.Enabled = false;
-            ShowTrayBarIconBox.Enabled   = false;
-            StartButton.Enabled          = false;
-            StopButton.Enabled           = true;
+            ShowTrayBarIconBox.Enabled = false;
+            StartButton.Enabled = false;
+            StopButton.Enabled = true;
         }
 
         // Enable GUI on stop
         private void EnableGuiOnStop()
         {
-            MovingPeriodBox.Enabled      = true;
-            MovingPixelBox.Enabled       = true;
+            StripMenuLanguage.Enabled = true;
+            MovingPeriodBox.Enabled = true;
+            MovingPixelBox.Enabled = true;
             MinimizeToTrayBarBox.Enabled = true;
-            ShowTrayBarIconBox.Enabled   = true;
-            StartButton.Enabled          = true;
-            StopButton.Enabled           = false;
+            ShowTrayBarIconBox.Enabled = true;
+            StartButton.Enabled = true;
+            StopButton.Enabled = false;
         }
 
         // Set status
@@ -256,6 +269,29 @@ namespace AutoMouseMover
             ShowInTaskbar = true;
             WindowState = FormWindowState.Normal;
             Show();
+        }
+
+        // Set language
+        private void SetLanguage(string cCulture)
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(cCulture);
+
+            this.Controls.Clear();
+            InitializeComponent();
+            InitializeResource();
+
+            SetStatus(mResourceMng.GetString("Idle"));
+        }
+
+        // Initialize resource
+        private void InitializeResource()
+        {
+            string res_name = "AutoMouseMover.Properties.lang_" + 
+                System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            mResourceMng = new ResourceManager(
+                res_name,
+                Assembly.GetExecutingAssembly()
+            );
         }
 
         #endregion

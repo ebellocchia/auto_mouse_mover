@@ -38,6 +38,7 @@
             MovingTimeSecondLabel = new System.Windows.Forms.Label();
             StatusStrip = new System.Windows.Forms.StatusStrip();
             StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            StatusTextLabel = new System.Windows.Forms.ToolStripStatusLabel();
             CursorTimer = new System.Windows.Forms.Timer(components);
             TrayBarIcon = new System.Windows.Forms.NotifyIcon(components);
             TrayBarContextMenu = new System.Windows.Forms.ContextMenuStrip(components);
@@ -47,8 +48,10 @@
             MinimizeToTrayBarBox = new System.Windows.Forms.CheckBox();
             ShowTrayBarIconBox = new System.Windows.Forms.CheckBox();
             MenuStrip = new System.Windows.Forms.MenuStrip();
+            StripMenuLanguage = new System.Windows.Forms.ToolStripMenuItem();
+            StripMenuEnglish = new System.Windows.Forms.ToolStripMenuItem();
+            StripMenuItalian = new System.Windows.Forms.ToolStripMenuItem();
             StripMenuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            StatusTextLabel = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)MovingPixelBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)MovingPeriodBox).BeginInit();
             StatusStrip.SuspendLayout();
@@ -58,83 +61,59 @@
             // 
             // StartButton
             // 
-            StartButton.Location = new System.Drawing.Point(24, 288);
-            StartButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            resources.ApplyResources(StartButton, "StartButton");
             StartButton.Name = "StartButton";
-            StartButton.Size = new System.Drawing.Size(125, 44);
-            StartButton.TabIndex = 0;
-            StartButton.Text = "Start";
             StartButton.UseVisualStyleBackColor = true;
             StartButton.Click += StartButton_Click;
             // 
             // MovingTimeLabel
             // 
-            MovingTimeLabel.AutoSize = true;
-            MovingTimeLabel.Location = new System.Drawing.Point(20, 73);
-            MovingTimeLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(MovingTimeLabel, "MovingTimeLabel");
             MovingTimeLabel.Name = "MovingTimeLabel";
-            MovingTimeLabel.Size = new System.Drawing.Size(212, 25);
-            MovingTimeLabel.TabIndex = 3;
-            MovingTimeLabel.Text = "Move when PC is idle for:";
             // 
             // MovingPixelLabel
             // 
-            MovingPixelLabel.AutoSize = true;
-            MovingPixelLabel.Location = new System.Drawing.Point(20, 123);
-            MovingPixelLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(MovingPixelLabel, "MovingPixelLabel");
             MovingPixelLabel.Name = "MovingPixelLabel";
-            MovingPixelLabel.Size = new System.Drawing.Size(275, 25);
-            MovingPixelLabel.TabIndex = 4;
-            MovingPixelLabel.Text = "Number of pixel to move mouse:";
             // 
             // MovingPixelBox
             // 
-            MovingPixelBox.Location = new System.Drawing.Point(294, 119);
-            MovingPixelBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            resources.ApplyResources(MovingPixelBox, "MovingPixelBox");
             MovingPixelBox.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
             MovingPixelBox.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             MovingPixelBox.Name = "MovingPixelBox";
-            MovingPixelBox.Size = new System.Drawing.Size(84, 31);
-            MovingPixelBox.TabIndex = 5;
             MovingPixelBox.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // MovingPeriodBox
             // 
-            MovingPeriodBox.Location = new System.Drawing.Point(294, 69);
-            MovingPeriodBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            resources.ApplyResources(MovingPeriodBox, "MovingPeriodBox");
             MovingPeriodBox.Maximum = new decimal(new int[] { 30, 0, 0, 0 });
             MovingPeriodBox.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
             MovingPeriodBox.Name = "MovingPeriodBox";
-            MovingPeriodBox.Size = new System.Drawing.Size(84, 31);
-            MovingPeriodBox.TabIndex = 6;
             MovingPeriodBox.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // MovingTimeSecondLabel
             // 
-            MovingTimeSecondLabel.AutoSize = true;
-            MovingTimeSecondLabel.Location = new System.Drawing.Point(386, 73);
-            MovingTimeSecondLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(MovingTimeSecondLabel, "MovingTimeSecondLabel");
             MovingTimeSecondLabel.Name = "MovingTimeSecondLabel";
-            MovingTimeSecondLabel.Size = new System.Drawing.Size(87, 25);
-            MovingTimeSecondLabel.TabIndex = 7;
-            MovingTimeSecondLabel.Text = "second(s)";
             // 
             // StatusStrip
             // 
             StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StatusLabel, StatusTextLabel });
-            StatusStrip.Location = new System.Drawing.Point(0, 366);
+            resources.ApplyResources(StatusStrip, "StatusStrip");
             StatusStrip.Name = "StatusStrip";
-            StatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 24, 0);
-            StatusStrip.Size = new System.Drawing.Size(491, 32);
             StatusStrip.SizingGrip = false;
-            StatusStrip.TabIndex = 8;
             // 
             // StatusLabel
             // 
             StatusLabel.Name = "StatusLabel";
-            StatusLabel.Size = new System.Drawing.Size(64, 25);
-            StatusLabel.Text = "Status:";
+            resources.ApplyResources(StatusLabel, "StatusLabel");
+            // 
+            // StatusTextLabel
+            // 
+            StatusTextLabel.Name = "StatusTextLabel";
+            resources.ApplyResources(StatusTextLabel, "StatusTextLabel");
             // 
             // CursorTimer
             // 
@@ -143,11 +122,8 @@
             // TrayBarIcon
             // 
             TrayBarIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            TrayBarIcon.BalloonTipText = "Automatic mouse mover is running in background";
-            TrayBarIcon.BalloonTipTitle = "Automatic mouse mover";
+            resources.ApplyResources(TrayBarIcon, "TrayBarIcon");
             TrayBarIcon.ContextMenuStrip = TrayBarContextMenu;
-            TrayBarIcon.Icon = (System.Drawing.Icon)resources.GetObject("TrayBarIcon.Icon");
-            TrayBarIcon.Text = "Automatic mouse mover running";
             TrayBarIcon.MouseDoubleClick += TrayBarIcon_MouseDoubleClick;
             // 
             // TrayBarContextMenu
@@ -155,90 +131,80 @@
             TrayBarContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             TrayBarContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { TrayBarMenuOpen, TrayBarMenuClose });
             TrayBarContextMenu.Name = "TrayBarContextMenu";
-            TrayBarContextMenu.Size = new System.Drawing.Size(129, 68);
+            resources.ApplyResources(TrayBarContextMenu, "TrayBarContextMenu");
             // 
             // TrayBarMenuOpen
             // 
             TrayBarMenuOpen.Name = "TrayBarMenuOpen";
-            TrayBarMenuOpen.Size = new System.Drawing.Size(128, 32);
-            TrayBarMenuOpen.Text = "Open";
+            resources.ApplyResources(TrayBarMenuOpen, "TrayBarMenuOpen");
             TrayBarMenuOpen.Click += TrayBarMenuOpen_Click;
             // 
             // TrayBarMenuClose
             // 
             TrayBarMenuClose.Name = "TrayBarMenuClose";
-            TrayBarMenuClose.Size = new System.Drawing.Size(128, 32);
-            TrayBarMenuClose.Text = "Close";
+            resources.ApplyResources(TrayBarMenuClose, "TrayBarMenuClose");
             TrayBarMenuClose.Click += TrayBarMenuClose_Click;
             // 
             // StopButton
             // 
-            StopButton.Enabled = false;
-            StopButton.Location = new System.Drawing.Point(342, 288);
-            StopButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            resources.ApplyResources(StopButton, "StopButton");
             StopButton.Name = "StopButton";
-            StopButton.Size = new System.Drawing.Size(125, 44);
-            StopButton.TabIndex = 10;
-            StopButton.Text = "Stop";
             StopButton.UseVisualStyleBackColor = true;
             StopButton.Click += StopButton_Click;
             // 
             // MinimizeToTrayBarBox
             // 
-            MinimizeToTrayBarBox.AutoSize = true;
+            resources.ApplyResources(MinimizeToTrayBarBox, "MinimizeToTrayBarBox");
             MinimizeToTrayBarBox.Checked = true;
             MinimizeToTrayBarBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            MinimizeToTrayBarBox.Location = new System.Drawing.Point(25, 178);
-            MinimizeToTrayBarBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             MinimizeToTrayBarBox.Name = "MinimizeToTrayBarBox";
-            MinimizeToTrayBarBox.Size = new System.Drawing.Size(304, 29);
-            MinimizeToTrayBarBox.TabIndex = 11;
-            MinimizeToTrayBarBox.Text = "Minimize to tray bar when started";
             MinimizeToTrayBarBox.UseVisualStyleBackColor = true;
             MinimizeToTrayBarBox.CheckedChanged += MinimizeToTrayBarBox_CheckedChanged;
             // 
             // ShowTrayBarIconBox
             // 
-            ShowTrayBarIconBox.AutoSize = true;
+            resources.ApplyResources(ShowTrayBarIconBox, "ShowTrayBarIconBox");
             ShowTrayBarIconBox.Checked = true;
             ShowTrayBarIconBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            ShowTrayBarIconBox.Location = new System.Drawing.Point(25, 223);
-            ShowTrayBarIconBox.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             ShowTrayBarIconBox.Name = "ShowTrayBarIconBox";
-            ShowTrayBarIconBox.Size = new System.Drawing.Size(320, 29);
-            ShowTrayBarIconBox.TabIndex = 12;
-            ShowTrayBarIconBox.Text = "Show tray bar icon when minimized";
             ShowTrayBarIconBox.UseVisualStyleBackColor = true;
             // 
             // MenuStrip
             // 
             MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StripMenuAbout });
-            MenuStrip.Location = new System.Drawing.Point(0, 0);
+            MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { StripMenuLanguage, StripMenuAbout });
+            resources.ApplyResources(MenuStrip, "MenuStrip");
             MenuStrip.Name = "MenuStrip";
-            MenuStrip.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
             MenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            MenuStrip.Size = new System.Drawing.Size(491, 35);
-            MenuStrip.TabIndex = 13;
+            // 
+            // StripMenuLanguage
+            // 
+            StripMenuLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { StripMenuEnglish, StripMenuItalian });
+            StripMenuLanguage.Name = "StripMenuLanguage";
+            resources.ApplyResources(StripMenuLanguage, "StripMenuLanguage");
+            // 
+            // StripMenuEnglish
+            // 
+            StripMenuEnglish.Name = "StripMenuEnglish";
+            resources.ApplyResources(StripMenuEnglish, "StripMenuEnglish");
+            StripMenuEnglish.Click += StripMenuEnglish_Click;
+            // 
+            // StripMenuItalian
+            // 
+            StripMenuItalian.Name = "StripMenuItalian";
+            resources.ApplyResources(StripMenuItalian, "StripMenuItalian");
+            StripMenuItalian.Click += StripMenuItalian_Click;
             // 
             // StripMenuAbout
             // 
             StripMenuAbout.Name = "StripMenuAbout";
-            StripMenuAbout.Size = new System.Drawing.Size(78, 29);
-            StripMenuAbout.Text = "About";
+            resources.ApplyResources(StripMenuAbout, "StripMenuAbout");
             StripMenuAbout.Click += StripMenuAbout_Click;
-            // 
-            // StatusTextLabel
-            // 
-            StatusTextLabel.Name = "StatusTextLabel";
-            StatusTextLabel.Size = new System.Drawing.Size(40, 25);
-            StatusTextLabel.Text = "idle";
             // 
             // AutoMouseMoverForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(491, 398);
             Controls.Add(ShowTrayBarIconBox);
             Controls.Add(MinimizeToTrayBarBox);
             Controls.Add(StopButton);
@@ -251,13 +217,9 @@
             Controls.Add(MovingTimeLabel);
             Controls.Add(StartButton);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = MenuStrip;
-            Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             MaximizeBox = false;
             Name = "AutoMouseMoverForm";
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            Text = "Automatic Mouse Mover";
             FormClosing += AutoMouseMoverForm_FormClosing;
             Resize += AutoMouseMoverForm_Resize;
             ((System.ComponentModel.ISupportInitialize)MovingPixelBox).EndInit();
@@ -292,6 +254,9 @@
         private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem StripMenuAbout;
         private System.Windows.Forms.ToolStripStatusLabel StatusTextLabel;
+        private System.Windows.Forms.ToolStripMenuItem StripMenuLanguage;
+        private System.Windows.Forms.ToolStripMenuItem StripMenuEnglish;
+        private System.Windows.Forms.ToolStripMenuItem StripMenuItalian;
     }
 }
 

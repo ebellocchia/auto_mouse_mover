@@ -44,7 +44,6 @@ namespace AutoMouseMover
             var ass_helper = new AssemblyHelper();
             // Set labels
             ProductLabel.Text = String.Format(ProductLabel.Text, ass_helper.Product);
-            DescriptionLabel.Text = String.Format(DescriptionLabel.Text, ass_helper.Description);
             VersionLabel.Text = String.Format(VersionLabel.Text, ass_helper.Version);
             CopyrightLabel.Text = String.Format(CopyrightLabel.Text, ass_helper.Copyright);
         }

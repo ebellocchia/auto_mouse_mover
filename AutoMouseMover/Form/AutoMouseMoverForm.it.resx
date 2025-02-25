@@ -166,6 +166,9 @@
   <data name="TrayBarIcon.BalloonTipText" xml:space="preserve">
     <value>Automatic Mouse Mover è in esecuzione in background</value>
   </data>
+  <data name="TrayBarContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 68</value>
+  </data>
   <data name="TrayBarIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAYAAAAAAAEAIAB0EQAAZgAAAICAAAABACAAKAgBANoRAABAQAAAAQAgAChCAAACGgEAMDAAAAEA
@@ -1906,6 +1909,18 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAA=
 </value>
+  </data>
+  <data name="TrayBarMenuOpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 32</value>
+  </data>
+  <data name="TrayBarMenuOpen.Text" xml:space="preserve">
+    <value>Apri</value>
+  </data>
+  <data name="TrayBarMenuClose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 32</value>
+  </data>
+  <data name="TrayBarMenuClose.Text" xml:space="preserve">
+    <value>Chiudi</value>
   </data>
   <data name="StopButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>384, 288</value>

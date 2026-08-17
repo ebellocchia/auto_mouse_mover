@@ -54,6 +54,10 @@ namespace AutoMouseMover
         private SettingsHelper mSettings;
         // Resource manager
         private ResourceManager mResourceMng;
+        // Flag to remember whether the timer was running when the system suspended
+        private bool mWasRunningBeforeSuspend;
+        // Flag to remember whether the timer was running when the session was locked
+        private bool mWasRunningBeforeLock;
 
         #endregion
 
@@ -72,6 +76,14 @@ namespace AutoMouseMover
             mSettings = new SettingsHelper();
             // Load settings
             LoadSettings();
+            // React to sleep/resume and monitor docking/undocking, which can change
+            // the display topology underneath the cursor timer
+            SystemEvents.PowerModeChanged += OnPowerModeChanged;
+            SystemEvents.DisplaySettingsChanged += OnDisplaySettingsChanged;
+            // Session lock/unlock is a reliable signal on Modern Standby laptops,
+            // where PowerModeChanged Suspend/Resume is often not raised. Locking
+            // (Win+L) typically precedes undocking and sleeping in normal use.
+            SystemEvents.SessionSwitch += OnSessionSwitch;
         }
 
         #endregion
@@ -164,6 +176,10 @@ namespace AutoMouseMover
         // Closing form event
         private void AutoMouseMoverForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // SystemEvents are static and would otherwise keep this form alive
+            SystemEvents.PowerModeChanged -= OnPowerModeChanged;
+            SystemEvents.DisplaySettingsChanged -= OnDisplaySettingsChanged;
+            SystemEvents.SessionSwitch -= OnSessionSwitch;
             SaveSettings();
         }
 
@@ -181,6 +197,117 @@ namespace AutoMouseMover
         private void CursorTimer_Tick(object sender, EventArgs e)
         {
             mAutoMouseMover.MoveMouse();
+        }
+
+        // System power mode changed (system going to sleep or waking up)
+        private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        {
+            // Record every transition so a later crash/dump can be lined up
+            // against sleep/resume activity
+            CrashLogger.Log($"PowerModeChanged: {e.Mode}");
+
+            // SystemEvents handlers are raised on a dedicated background thread, so
+            // marshal back onto the UI thread before touching any WinForms control
+            if (IsDisposed || !IsHandleCreated)
+            {
+                return;
+            }
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => OnPowerModeChanged(sender, e)));
+                return;
+            }
+
+            switch (e.Mode)
+            {
+                // Stop the timer before the machine sleeps so it cannot fire against
+                // a transient/invalid display topology while the system wakes up
+                case PowerModes.Suspend:
+                    mWasRunningBeforeSuspend = CursorTimer.Enabled;
+                    CursorTimer.Stop();
+                    break;
+
+                // On resume, re-baseline the cursor state (monitors may have been
+                // docked/undocked while asleep) before restarting the timer
+                case PowerModes.Resume:
+                    if (mWasRunningBeforeSuspend)
+                    {
+                        mWasRunningBeforeSuspend = false;
+                        mAutoMouseMover.Initialize((int)MovingPixelBox.Value, LeftClickAfterMovingBox.Checked);
+                        CursorTimer.Start();
+                    }
+                    break;
+            }
+        }
+
+        // Display settings changed (monitor docked/undocked, resolution or DPI change)
+        private void OnDisplaySettingsChanged(object sender, EventArgs e)
+        {
+            // Record the new monitor layout so a later crash/dump can be lined up
+            // against docking/undocking activity
+            CrashLogger.Log($"DisplaySettingsChanged: {CrashLogger.DescribeDisplays()}");
+
+            // SystemEvents handlers are raised on a dedicated background thread, so
+            // marshal back onto the UI thread before touching any WinForms control
+            if (IsDisposed || !IsHandleCreated)
+            {
+                return;
+            }
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => OnDisplaySettingsChanged(sender, e)));
+                return;
+            }
+
+            // Drop any cached cursor/screen position that may now reference a
+            // monitor that no longer exists
+            if (CursorTimer.Enabled)
+            {
+                mAutoMouseMover.Initialize((int)MovingPixelBox.Value, LeftClickAfterMovingBox.Checked);
+            }
+        }
+
+        // Session locked/unlocked (e.g. Win+L). On a Modern Standby laptop this is
+        // a reliable signal where PowerModeChanged often is not, and it usually
+        // fires before the machine is undocked and put to sleep.
+        private void OnSessionSwitch(object sender, SessionSwitchEventArgs e)
+        {
+            // Record every transition so a later crash/dump can be lined up
+            // against lock/unlock activity
+            CrashLogger.Log($"SessionSwitch: {e.Reason}");
+
+            // SystemEvents handlers are raised on a dedicated background thread, so
+            // marshal back onto the UI thread before touching any WinForms control
+            if (IsDisposed || !IsHandleCreated)
+            {
+                return;
+            }
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => OnSessionSwitch(sender, e)));
+                return;
+            }
+
+            switch (e.Reason)
+            {
+                // Stop the timer while the session is locked so it cannot fire
+                // against a display topology that is about to be torn down (undock)
+                case SessionSwitchReason.SessionLock:
+                    mWasRunningBeforeLock = CursorTimer.Enabled;
+                    CursorTimer.Stop();
+                    break;
+
+                // On unlock, re-baseline the cursor state (monitors may have been
+                // docked/undocked while locked) before restarting the timer
+                case SessionSwitchReason.SessionUnlock:
+                    if (mWasRunningBeforeLock)
+                    {
+                        mWasRunningBeforeLock = false;
+                        mAutoMouseMover.Initialize((int)MovingPixelBox.Value, LeftClickAfterMovingBox.Checked);
+                        CursorTimer.Start();
+                    }
+                    break;
+            }
         }
 
         #endregion

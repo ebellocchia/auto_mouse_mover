@@ -96,6 +96,16 @@ namespace AutoMouseMover.Logic
             // Get current position
             var curr_pos = CursorHelper.GetCurrentPosition();
 
+            // If the cursor position could not be read, skip this tick entirely
+            // rather than acting on an invalid (-1,-1) position. This happens
+            // briefly when the active input desktop switches (e.g. a session lock
+            // / secure desktop), where GetCursorPos returns ERROR_ACCESS_DENIED
+            // before our lock guard stops the timer.
+            if (curr_pos.IsInvalidated())
+            {
+                return;
+            }
+
             // Move cursor only if position is not changed, in order to not disturb if the user is working
             if (curr_pos == mLastCursorPos)
             {

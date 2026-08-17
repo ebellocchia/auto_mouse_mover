@@ -26,6 +26,7 @@ using System.Resources;
 using System.Windows.Forms;
 using AutoMouseMover.Logic;
 using AutoMouseMover.Utils;
+using Microsoft.Win32;
 
 namespace AutoMouseMover
 {
@@ -353,23 +354,23 @@ namespace AutoMouseMover
         }
 
         // Enable/Disable GUI
-        private void SetGuiEnabled(bool cEnabled)
+        private void SetGuiEnabled(bool enabled)
         {
-            StripMenuAbout.Enabled = cEnabled;
-            StripMenuLanguage.Enabled = cEnabled;
-            MovingPeriodBox.Enabled = cEnabled;
-            MovingPixelBox.Enabled = cEnabled;
-            LeftClickAfterMovingBox.Enabled = cEnabled;
-            MinimizeToTrayBarBox.Enabled = cEnabled;
-            ShowTrayBarIconBox.Enabled = MinimizeToTrayBarBox.Checked ? cEnabled : false;
-            StartButton.Enabled = cEnabled;
-            StopButton.Enabled = !cEnabled;
+            StripMenuAbout.Enabled = enabled;
+            StripMenuLanguage.Enabled = enabled;
+            MovingPeriodBox.Enabled = enabled;
+            MovingPixelBox.Enabled = enabled;
+            LeftClickAfterMovingBox.Enabled = enabled;
+            MinimizeToTrayBarBox.Enabled = enabled;
+            ShowTrayBarIconBox.Enabled = MinimizeToTrayBarBox.Checked ? enabled : false;
+            StartButton.Enabled = enabled;
+            StopButton.Enabled = !enabled;
         }
 
         // Set status
-        private void SetStatus(string? cText)
+        private void SetStatus(string text)
         {
-            StatusTextLabel.Text = cText;
+            StatusTextLabel.Text = text;
         }
 
         // Minimize window to tray bar

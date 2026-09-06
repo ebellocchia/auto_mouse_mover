@@ -5,11 +5,15 @@
 .DESCRIPTION
 	Removes the managed crash log and (optionally) the native WER dump files so
 	that the next run of AutoMouseMover.exe produces a fresh, easy-to-read data
-	set. The app recreates crash.log automatically on its next launch.
+	set. The app recreates crash.log on its next launch, provided it is started
+	with the "--debug-log" switch (diagnostic logging is off by default).
 
 	This only touches per-user diagnostic files, so no elevation is required. It
 	does NOT remove the WER registry setting (use Enable-WerLocalDumps.ps1 -Remove
 	for that) and does NOT delete the diagnostic zips on your Desktop.
+
+	Supports -WhatIf and -Confirm: use -WhatIf to see exactly what would be
+	deleted without touching anything.
 
 .PARAMETER DumpFolder
 	Folder where WER writes dumps. Defaults to %LOCALAPPDATA%\AutoMouseMover\Dumps,
@@ -23,16 +27,19 @@
 	zip on your Desktop, so nothing is lost if you haven't reviewed it yet.
 
 .EXAMPLE
-	pwsh -ExecutionPolicy Bypass -File .\tools\Clear-CrashLogs.ps1
+	powershell -ExecutionPolicy Bypass -File .\tools\Clear-CrashLogs.ps1
 
 .EXAMPLE
-	pwsh -ExecutionPolicy Bypass -File .\tools\Clear-CrashLogs.ps1 -Backup
+	powershell -ExecutionPolicy Bypass -File .\tools\Clear-CrashLogs.ps1 -Backup
 
 .EXAMPLE
-	pwsh -ExecutionPolicy Bypass -File .\tools\Clear-CrashLogs.ps1 -KeepDumps
+	powershell -ExecutionPolicy Bypass -File .\tools\Clear-CrashLogs.ps1 -KeepDumps
+
+.EXAMPLE
+	powershell -ExecutionPolicy Bypass -File .\tools\Clear-CrashLogs.ps1 -WhatIf
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess = $true, ConfirmImpact = 'Medium')]
 param(
 	[string]$DumpFolder = (Join-Path $env:LOCALAPPDATA 'AutoMouseMover\Dumps'),
 	[switch]$KeepDumps,
@@ -75,14 +82,16 @@ if ($Backup) {
 	else {
 		Write-Host 'Nothing to back up (no existing logs or dumps).' -ForegroundColor Cyan
 	}
-	Remove-Item $staging -Recurse -Force
+	Remove-Item $staging -Recurse -Force -ErrorAction SilentlyContinue
 	Write-Host ''
 }
 
 # Clear the managed crash log
 if (Test-Path $logFile) {
-	Remove-Item $logFile -Force
-	Write-Host "  [x] Removed crash.log"
+	if ($PSCmdlet.ShouldProcess($logFile, 'Remove crash log')) {
+		Remove-Item $logFile -Force
+		Write-Host "  [x] Removed crash.log"
+	}
 }
 else {
 	Write-Host "  [ ] crash.log not present"
@@ -95,8 +104,10 @@ if ($KeepDumps) {
 elseif (Test-Path $DumpFolder) {
 	$dumps = Get-ChildItem -Path $DumpFolder -Filter *.dmp -ErrorAction SilentlyContinue
 	if ($dumps) {
-		$dumps | Remove-Item -Force
-		Write-Host ("  [x] Removed {0} dump file(s)" -f $dumps.Count)
+		if ($PSCmdlet.ShouldProcess(("{0} dump file(s) in {1}" -f $dumps.Count, $DumpFolder), 'Remove')) {
+			$dumps | Remove-Item -Force
+			Write-Host ("  [x] Removed {0} dump file(s)" -f $dumps.Count)
+		}
 	}
 	else {
 		Write-Host "  [ ] No dump files to remove"
@@ -106,6 +117,8 @@ else {
 	Write-Host "  [ ] Dump folder not present"
 }
 
-Write-Host ''
-Write-Host 'Cleared. Launch AutoMouseMover.exe (standalone, no debugger/profiler)' -ForegroundColor Green
-Write-Host 'to start a fresh capture.'
+if (-not $WhatIfPreference) {
+	Write-Host ''
+	Write-Host 'Cleared. Launch "AutoMouseMover.exe --debug-log" (standalone, no' -ForegroundColor Green
+	Write-Host 'debugger/profiler) to start a fresh capture.' -ForegroundColor Green
+}

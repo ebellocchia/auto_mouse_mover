@@ -414,8 +414,19 @@ namespace AutoMouseMover
         // Initialize resource
         private void InitializeResource()
         {
-            string res_name = "AutoMouseMover.Properties.lang_" + 
+            string language =
                 System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+
+            // The application currently includes only English and Italian resources.
+            // Fall back to English for all unsupported system languages.
+            if (language != "en" && language != "it")
+            {
+                language = "en";
+            }
+
+            string res_name =
+                $"AutoMouseMover.Properties.lang_{language}";
+            
             mResourceMng = new ResourceManager(
                 res_name,
                 Assembly.GetExecutingAssembly()

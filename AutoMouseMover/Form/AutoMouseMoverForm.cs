@@ -41,6 +41,11 @@ namespace AutoMouseMover
         #region Constants
 
         private const int BALLOON_TIP_TIMEOUT = 500;
+        // Embedded language resource names
+        private const string RES_NAME_PREFIX = "AutoMouseMover.Properties.lang_";
+        private const string RES_NAME_SUFFIX = ".resources";
+        // Language to be used when the system one is not available
+        private const string DEFAULT_LANGUAGE = "en";
 
         #endregion
 
@@ -414,22 +419,21 @@ namespace AutoMouseMover
         // Initialize resource
         private void InitializeResource()
         {
-            string language =
+            var assembly = Assembly.GetExecutingAssembly();
+            string res_name = RES_NAME_PREFIX +
                 System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
 
-            // The application currently includes only English and Italian resources.
-            // Fall back to English for all unsupported system languages.
-            if (language != "en" && language != "it")
+            // Only some languages are embedded in the assembly. Fall back to the default
+            // one for all the others, otherwise the resource manager would throw a
+            // MissingManifestResourceException at the first lookup.
+            if (Array.IndexOf(assembly.GetManifestResourceNames(), res_name + RES_NAME_SUFFIX) < 0)
             {
-                language = "en";
+                res_name = RES_NAME_PREFIX + DEFAULT_LANGUAGE;
             }
 
-            string res_name =
-                $"AutoMouseMover.Properties.lang_{language}";
-            
             mResourceMng = new ResourceManager(
                 res_name,
-                Assembly.GetExecutingAssembly()
+                assembly
             );
         }
 

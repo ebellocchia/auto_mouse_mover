@@ -208,28 +208,28 @@ namespace AutoMouseMover
         // System power mode changed (system going to sleep or waking up)
         private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
-            // Record every transition so a later crash/dump can be lined up
-            // against sleep/resume activity
+            // Record every transition so a later crash/dump can be lined up against
+            // sleep/resume activity. Logged from the SystemEvents thread on purpose:
+            // the write is synchronous, so the entry survives even when the UI thread
+            // is not pumped before the machine actually suspends.
             CrashLogger.Log($"PowerModeChanged: {e.Mode}");
+            RunOnUiThread(() => ApplyPowerModeChange(e.Mode));
+        }
 
-            // SystemEvents handlers are raised on a dedicated background thread, so
-            // marshal back onto the UI thread before touching any WinForms control
-            if (IsDisposed || !IsHandleCreated)
-            {
-                return;
-            }
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action(() => OnPowerModeChanged(sender, e)));
-                return;
-            }
-
-            switch (e.Mode)
+        // Apply a power mode transition (UI thread)
+        private void ApplyPowerModeChange(PowerModes cMode)
+        {
+            switch (cMode)
             {
                 // Stop the timer before the machine sleeps so it cannot fire against
                 // a transient/invalid display topology while the system wakes up
                 case PowerModes.Suspend:
-                    mWasRunningBeforeSuspend = CursorTimer.Enabled;
+                    // Latch instead of assigning: a second Suspend without a Resume in
+                    // between would otherwise forget that the timer had been running
+                    if (CursorTimer.Enabled)
+                    {
+                        mWasRunningBeforeSuspend = true;
+                    }
                     CursorTimer.Stop();
                     break;
 
@@ -252,19 +252,12 @@ namespace AutoMouseMover
             // Record the new monitor layout so a later crash/dump can be lined up
             // against docking/undocking activity
             CrashLogger.Log($"DisplaySettingsChanged: {CrashLogger.DescribeDisplays()}");
+            RunOnUiThread(ApplyDisplaySettingsChange);
+        }
 
-            // SystemEvents handlers are raised on a dedicated background thread, so
-            // marshal back onto the UI thread before touching any WinForms control
-            if (IsDisposed || !IsHandleCreated)
-            {
-                return;
-            }
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action(() => OnDisplaySettingsChanged(sender, e)));
-                return;
-            }
-
+        // Apply a display settings change (UI thread)
+        private void ApplyDisplaySettingsChange()
+        {
             // Drop any cached cursor/screen position that may now reference a
             // monitor that no longer exists
             if (CursorTimer.Enabled)
@@ -281,25 +274,23 @@ namespace AutoMouseMover
             // Record every transition so a later crash/dump can be lined up
             // against lock/unlock activity
             CrashLogger.Log($"SessionSwitch: {e.Reason}");
+            RunOnUiThread(() => ApplySessionSwitch(e.Reason));
+        }
 
-            // SystemEvents handlers are raised on a dedicated background thread, so
-            // marshal back onto the UI thread before touching any WinForms control
-            if (IsDisposed || !IsHandleCreated)
-            {
-                return;
-            }
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action(() => OnSessionSwitch(sender, e)));
-                return;
-            }
-
-            switch (e.Reason)
+        // Apply a session lock/unlock transition (UI thread)
+        private void ApplySessionSwitch(SessionSwitchReason cReason)
+        {
+            switch (cReason)
             {
                 // Stop the timer while the session is locked so it cannot fire
                 // against a display topology that is about to be torn down (undock)
                 case SessionSwitchReason.SessionLock:
-                    mWasRunningBeforeLock = CursorTimer.Enabled;
+                    // Latch instead of assigning: a second SessionLock without an
+                    // unlock in between would otherwise forget that it was running
+                    if (CursorTimer.Enabled)
+                    {
+                        mWasRunningBeforeLock = true;
+                    }
                     CursorTimer.Stop();
                     break;
 
@@ -322,6 +313,38 @@ namespace AutoMouseMover
         // Private methods
         //
         #region Private methods
+
+        // Run an action on the UI thread.
+        // SystemEvents handlers are raised on a dedicated background thread, so no
+        // WinForms control can be touched directly from them. The form may also be
+        // closed while an event is still in flight, hence the guards below.
+        private void RunOnUiThread(Action cAction)
+        {
+            if (IsDisposed || !IsHandleCreated)
+            {
+                return;
+            }
+
+            try
+            {
+                if (InvokeRequired)
+                {
+                    BeginInvoke(cAction);
+                }
+                else
+                {
+                    cAction();
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                // The form was closed between the check above and this call
+            }
+            catch (InvalidOperationException)
+            {
+                // Same, but the window handle had already been destroyed
+            }
+        }
 
         // Load settings
         private void LoadSettings()

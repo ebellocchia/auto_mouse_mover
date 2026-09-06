@@ -1,3 +1,9 @@
+# 1.3.0
+
+- Default to English when the system language is not available
+- Handle system sleep, session lock and monitor changes
+- Add optional diagnostic logging with the --debug-log argument
+
 # 1.2.0
 
 - Add the possibility of performing a left-click after moving the mouse
